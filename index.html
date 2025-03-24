@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h3>Bài 1: Chuyển đổi nhiệt độ</h3>
+<button onclick="convertTemperature()">Chuyển đổi</button>
+
+<h3>Bài 2: Chuyển đổi mét sang feet</h3>
+<button onclick="convertMetersToFeet()">Chuyển đổi</button>
+<h3>Bài 3: Diện tích hình vuông</h3>
+<button onclick="squareArea()">Tính diện tích</button>
+
+<h3>Bài 4: Diện tích hình chữ nhật</h3>
+<button onclick="rectangleArea()">Tính diện tích</button>
+
+<h3>Bài 5: Diện tích tam giác vuông</h3>
+<button onclick="triangleArea()">Tính diện tích</button>
+
+<h3>Bài 6: Giải phương trình bậc 1</h3>
+<button onclick="solveLinearEquation()">Giải</button>
+
+<h3>Bài 7: Giải phương trình bậc 2</h3>
+<button onclick="solveQuadraticEquation()">Giải</button>
+
+<h3>Bài 8: Kiểm tra tuổi</h3>
+<button onclick="checkAge()">Kiểm tra</button>
+
+<h3>Bài 9: Kiểm tra cạnh tam giác</h3>
+<button onclick="checkTriangle()">Kiểm tra</button>
+
+<h3>Bài 10: Tính giá điện</h3>
+<button onclick="calculateElectricity()">Tính</button>
+
+<h3>Bài 11: Tính thuế TNCN</h3>
+<button onclick="calculateTax()">Tính</button>
+
+<h3>Bài 12: Tính lãi ngân hàng</h3>
+<button onclick="calculateInterest()">Tính</button>
+
+</body>
+<script>
+    function convertTemperature() {
+        let celsius = parseFloat(prompt("Nhập nhiệt độ (°C):"));
+        let fahrenheit = (celsius * 9/5) + 32;
+        alert(`${celsius}°C = ${fahrenheit.toFixed(2)}°F`);
+    }
+
+    function convertMetersToFeet() {
+        let meters = parseFloat(prompt("Nhập chiều dài (m):"));
+        let feet = meters * 3.2808;
+        alert(`${meters}m = ${feet.toFixed(2)}ft`);
+    }
+
+    function squareArea() {
+        let a = parseFloat(prompt("Nhập cạnh a:"));
+        alert(`Diện tích hình vuông: ${a * a}`);
+    }
+
+    function rectangleArea() {
+        let a = parseFloat(prompt("Nhập cạnh a:"));
+        let b = parseFloat(prompt("Nhập cạnh b:"));
+        alert(`Diện tích hình chữ nhật: ${a * b}`);
+    }
+
+    function triangleArea() {
+        let a = parseFloat(prompt("Nhập cạnh a:"));
+        let b = parseFloat(prompt("Nhập cạnh b:"));
+        alert(`Diện tích tam giác vuông: ${(a * b) / 2}`);
+    }
+
+    function solveLinearEquation() {
+        let a = parseFloat(prompt("Nhập hệ số a:"));
+        let b = parseFloat(prompt("Nhập hệ số b:"));
+
+        if (a === 0) {
+            alert(b === 0 ? "Phương trình có vô số nghiệm" : "Phương trình vô nghiệm");
+        } else {
+            alert(`Nghiệm của phương trình: x = ${-b / a}`);
+        }
+    }
+
+    function solveQuadraticEquation() {
+        let a = parseFloat(prompt("Nhập hệ số a:"));
+        let b = parseFloat(prompt("Nhập hệ số b:"));
+        let c = parseFloat(prompt("Nhập hệ số c:"));
+
+        if (a === 0) {
+            alert(b === 0 ? "Phương trình vô nghiệm" : `Nghiệm: x = ${-c / b}`);
+        } else {
+            let delta = b * b - 4 * a * c;
+            if (delta > 0) {
+                let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                alert(`Hai nghiệm: x1 = ${x1}, x2 = ${x2}`);
+            } else if (delta === 0) {
+                alert(`Nghiệm kép: x = ${-b / (2 * a)}`);
+            } else {
+                alert("Phương trình vô nghiệm");
+            }
+        }
+    }
+
+    function checkAge() {
+        let age = parseInt(prompt("Nhập số tuổi:"));
+        alert((age > 0 && age < 120) ? "Hợp lệ" : "Không hợp lệ");
+    }
+    function checkTriangle() {
+        let a = parseFloat(prompt("Nhập cạnh a:"));
+        let b = parseFloat(prompt("Nhập cạnh b:"));
+        let c = parseFloat(prompt("Nhập cạnh c:"));
+
+        alert((a > 0 && b > 0 && c > 0 && a + b > c && b + c > a && a + c > b) ? "Là tam giác" : "Không phải tam giác");
+    }
+
+    function calculateElectricity() {
+        let kwh = parseFloat(prompt("Nhập số kWh tiêu thụ:"));
+        let price = kwh * 2000;
+        alert(`Tổng tiền điện: ${price.toLocaleString('vi-VN')} `);
+    }
+
+    function calculateTax() {
+        let income = parseFloat(prompt("Nhập thu nhập cá nhân:"));
+        let tax = income > 11000000 ? (income - 11000000) * 0.1 : 0;
+        alert(`Thuế TNCN: ${tax.toLocaleString('vi-VN')} VNĐ`);
+    }
+
+    function calculateInterest() {
+        let principal = parseFloat(prompt("Nhập số tiền gửi (VNĐ):"));
+        let months = parseInt(prompt("Nhập số tháng gửi:"));
+        let rate = parseFloat(prompt("Nhập lãi suất hàng tháng (%):")) / 100;
+
+        let total = principal * Math.pow(1 + rate, months);
+        alert(`Tổng số tiền sau ${months} tháng: ${total.toLocaleString('vi-VN')} VNĐ`);
+    }
+</script>
+</html>
